@@ -4,6 +4,7 @@ import MyPasswordsStack from "./myPasswordsStack";
 import MyAccountStack from "./myAccountStack";
 import AboutStack from "./aboutStack";
 import { globalColors } from "../styles/globalStyles";
+import account from "../utils/account";
 
 const Drawer = createDrawerNavigator();
 

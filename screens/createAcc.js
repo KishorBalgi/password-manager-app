@@ -1,12 +1,12 @@
-import * as React from "react";
+import React from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
-import PassBox from "../components/passBox";
 import globalStyles from "../styles/globalStyles";
+import SKForm from "../components/skForm";
 
-export default function MyPasswords() {
+export default function CreateAcc() {
   return (
     <View style={globalStyles.container}>
-      <PassBox />
+      <SKForm />
     </View>
   );
 }
