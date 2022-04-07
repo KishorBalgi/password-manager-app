@@ -5,7 +5,7 @@ import globalStyles from "../styles/globalStyles";
 export default function MyAccount() {
   return (
     <View style={globalStyles.container}>
-      <Text>My Account</Text>
+      <Text style={globalStyles.title}>My Account</Text>
     </View>
   );
 }

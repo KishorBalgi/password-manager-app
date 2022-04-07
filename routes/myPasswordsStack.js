@@ -7,11 +7,7 @@ const Stack = createNativeStackNavigator();
 const MyPasswordsStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen
-        name="MyPasswords"
-        component={MyPasswords}
-        options={{ title: "MyPasswords" }}
-      />
+      <Stack.Screen name="MyPasswords" component={MyPasswords} />
     </Stack.Navigator>
   );
 };
