@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
-import { addSK } from "../utils/createSK";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SKForm() {
   return (
@@ -12,7 +12,7 @@ export default function SKForm() {
       <Formik
         initialValues={{ sk: "" }}
         onSubmit={(values, actions) => {
-          addSK(values.sk);
+          AsyncStorage.setItem("sk", values.sk);
           actions.resetForm();
         }}
       >
