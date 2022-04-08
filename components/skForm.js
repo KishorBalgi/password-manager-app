@@ -3,16 +3,21 @@ import { StyleSheet, View, Text, TextInput } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
+import { hashSK } from "../utils/SK";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function SKForm() {
+export default function SKForm({ setAcc }) {
   return (
     <View style={{ ...globalStyles.container, ...styles.form }}>
       <Text style={globalStyles.title}>Create Account</Text>
       <Formik
         initialValues={{ sk: "" }}
         onSubmit={(values, actions) => {
-          AsyncStorage.setItem("sk", values.sk);
+          hashSK(values.sk);
+          AsyncStorage.setItem("sk", values.sk, (err) => {
+            if (!err) setAcc(true);
+            else console.log(err);
+          });
           actions.resetForm();
         }}
       >
