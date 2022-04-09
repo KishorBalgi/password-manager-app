@@ -12,7 +12,8 @@ export default function VerifySKForm({ navigation }) {
       <Formik
         initialValues={{ sk: "" }}
         onSubmit={async (values, actions) => {
-          if (await _validateSK(values.sk)) navigation.navigate("MyPasswords");
+          if (await _validateSK(values.sk))
+            navigation.navigate("MyPasswords", values);
           else console.log("Invalid SK!!!");
           actions.resetForm();
         }}

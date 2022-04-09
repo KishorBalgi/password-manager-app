@@ -2,11 +2,11 @@ import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { globalColors } from "../styles/globalStyles";
 
-export default function PassBox() {
+export default function PassBox({ item }) {
   return (
     <View style={styles.passBox}>
-      <Text style={styles.title}>Google</Text>
-      <Text style={styles.pass}>sjldkgjf</Text>
+      <Text style={styles.title}>{item.name}</Text>
+      <Text style={styles.pass}>{item.pass}</Text>
     </View>
   );
 }
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
     backgroundColor: globalColors.clrPrimary,
+    margin: 10,
   },
   title: {
     textAlign: "center",
