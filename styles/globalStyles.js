@@ -23,6 +23,12 @@ const globalStyles = StyleSheet.create({
     fontSize: 18,
     textAlign: "justify",
   },
+  form: {
+    justifyContent: "center",
+  },
+  formInp: {
+    marginVertical: 20,
+  },
 });
 export default globalStyles;
 

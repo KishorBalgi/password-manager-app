@@ -3,33 +3,32 @@ import { StyleSheet, View, Text, TextInput } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
-import { hashSK } from "../utils/SK";
+import { _validateSK } from "../utils/SK";
 
-export default function SKForm({ setAcc }) {
+export default function VerifySKForm({ navigation }) {
   return (
     <View style={{ ...globalStyles.container, ...globalStyles.form }}>
-      <Text style={globalStyles.title}>Create Account</Text>
+      <Text style={globalStyles.title}>Verify your Secret Key</Text>
       <Formik
         initialValues={{ sk: "" }}
-        onSubmit={(values, actions) => {
-          hashSK(values.sk);
+        onSubmit={async (values, actions) => {
+          if (await _validateSK(values.sk)) navigation.navigate("MyPasswords");
+          else console.log("Invalid SK!!!");
           actions.resetForm();
-          setAcc(true);
         }}
       >
         {(props) => (
           <View>
             <TextInput
               style={{ ...globalStyles.input, ...globalStyles.formInp }}
-              placeholder="Enter a secret key"
+              placeholder="Enter your secret key"
               onChangeText={props.handleChange("sk")}
               value={props.values.sk}
             />
-            <CustomButton title={"Create"} onPress={props.handleSubmit} />
+            <CustomButton title={"Verify"} onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>
     </View>
   );
 }
-

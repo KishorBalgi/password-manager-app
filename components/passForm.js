@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import { _encrypt } from "../utils/store";
 export default function PassForm() {
   return (
-    <View style={{ ...globalStyles.container, ...styles.form }}>
+    <View style={{ ...globalStyles.container, ...globalStyles.form }}>
       <Text style={globalStyles.title}>Add Password</Text>
       <Formik
         initialValues={{ name: "", pass: "", sk: "" }}
@@ -19,19 +19,19 @@ export default function PassForm() {
         {(props) => (
           <ScrollView>
             <TextInput
-              style={{ ...globalStyles.input, ...styles.formInp }}
+              style={{ ...globalStyles.input, ...globalStyles.formInp }}
               placeholder="Enter a title"
               onChangeText={props.handleChange("name")}
               value={props.values.name}
             />
             <TextInput
-              style={{ ...globalStyles.input, ...styles.formInp }}
+              style={{ ...globalStyles.input, ...globalStyles.formInp }}
               placeholder="Enter the password"
               onChangeText={props.handleChange("pass")}
               value={props.values.pass}
             />
             <TextInput
-              style={{ ...globalStyles.input, ...styles.formInp }}
+              style={{ ...globalStyles.input, ...globalStyles.formInp }}
               placeholder="Enter your secret key"
               onChangeText={props.handleChange("sk")}
               value={props.values.sk}
@@ -43,12 +43,3 @@ export default function PassForm() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    justifyContent: "center",
-  },
-  formInp: {
-    marginVertical: 20,
-  },
-});
