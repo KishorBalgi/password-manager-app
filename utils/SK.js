@@ -6,3 +6,9 @@ export const hashSK = (sk) => {
   const hash = sha256(sk + pk).toString();
   AsyncStorage.setItem("sk", hash);
 };
+
+export const _validateSK = async (sk) => {
+  const hash = sha256(sk + pk).toString();
+  const orgHash = await AsyncStorage.getItem("sk");
+  return hash === orgHash;
+};

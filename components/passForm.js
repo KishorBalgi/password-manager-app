@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
@@ -9,7 +9,7 @@ export default function PassForm() {
     <View style={{ ...globalStyles.container, ...styles.form }}>
       <Text style={globalStyles.title}>Add Password</Text>
       <Formik
-        initialValues={{ name: "", pass: "" }}
+        initialValues={{ name: "", pass: "", sk: "" }}
         onSubmit={(values, actions) => {
           _encrypt(values);
           // console.log(values);
@@ -17,10 +17,10 @@ export default function PassForm() {
         }}
       >
         {(props) => (
-          <View>
+          <ScrollView>
             <TextInput
               style={{ ...globalStyles.input, ...styles.formInp }}
-              placeholder="Enter the name"
+              placeholder="Enter a title"
               onChangeText={props.handleChange("name")}
               value={props.values.name}
             />
@@ -30,8 +30,14 @@ export default function PassForm() {
               onChangeText={props.handleChange("pass")}
               value={props.values.pass}
             />
+            <TextInput
+              style={{ ...globalStyles.input, ...styles.formInp }}
+              placeholder="Enter your secret key"
+              onChangeText={props.handleChange("sk")}
+              value={props.values.sk}
+            />
             <CustomButton title={"Add"} onPress={props.handleSubmit} />
-          </View>
+          </ScrollView>
         )}
       </Formik>
     </View>
@@ -41,7 +47,6 @@ export default function PassForm() {
 const styles = StyleSheet.create({
   form: {
     justifyContent: "center",
-    paddingBottom: 70,
   },
   formInp: {
     marginVertical: 20,
