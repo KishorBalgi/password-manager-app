@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import bcrypt from "bcrypt";
+import pk from "./PK";
+import sha256 from "crypto-js/sha256";
 
 export const hashSK = (sk) => {
-  bcrypt.hash(sk, 10, function (err, hash) {
-    console.log(hash);
-  });
+  const hash = sha256(sk + pk).toString();
+  AsyncStorage.setItem("sk", hash);
 };

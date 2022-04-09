@@ -1,12 +1,12 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
 
 export default function PassForm() {
   return (
-    <View style={{ ...globalStyles.container, ...styles.form }}>
+    <ScrollView style={{ ...globalStyles.container, ...styles.form }}>
       <Text style={globalStyles.title}>Add Password</Text>
       <Formik
         initialValues={{ name: "", pass: "" }}
@@ -33,7 +33,7 @@ export default function PassForm() {
           </View>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 }
 

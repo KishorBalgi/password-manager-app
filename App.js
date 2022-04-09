@@ -8,23 +8,14 @@ import CreateAcc from "./screens/createAcc";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  const [acc, setAcc] = useState(null);
+  const [acc, setAcc] = useState(undefined);
   useEffect(() => {
-    AsyncStorage.setItem("sk", "");
+    // AsyncStorage.setItem("sk", "");
     AsyncStorage.getItem("sk", (err, res) => {
       if (!res) setAcc(false);
       else setAcc(true);
     });
   }, []);
-  // function account() {
-  //   let bol;
-  //   AsyncStorage.setItem("sk", "");
-  //   AsyncStorage.getItem("sk", (err, res) => {
-  //     if (res === "") bol = false;
-  //     bol = true;
-  //   });
-  //   return bol;
-  // }
   return (
     <NavigationContainer>
       {/* {acc === undefined ? <AppLoading /> : null} */}

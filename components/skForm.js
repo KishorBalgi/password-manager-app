@@ -14,11 +14,8 @@ export default function SKForm({ setAcc }) {
         initialValues={{ sk: "" }}
         onSubmit={(values, actions) => {
           hashSK(values.sk);
-          AsyncStorage.setItem("sk", values.sk, (err) => {
-            if (!err) setAcc(true);
-            else console.log(err);
-          });
           actions.resetForm();
+          setAcc(true);
         }}
       >
         {(props) => (
