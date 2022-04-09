@@ -11,6 +11,7 @@ export default function App() {
   const [acc, setAcc] = useState(undefined);
   useEffect(() => {
     // AsyncStorage.setItem("sk", "");
+    // AsyncStorage.setItem("passwords", "");
     AsyncStorage.getItem("sk", (err, res) => {
       if (!res) setAcc(false);
       else setAcc(true);

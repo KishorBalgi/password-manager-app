@@ -19,16 +19,10 @@ export const _encrypt = async (data) => {
       pass: [data, ...pass],
     };
     const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
-    console.log(await _decryptPass(sk));
-    // AsyncStorage.setItem("passwords", cipher);
+    AsyncStorage.setItem("passwords", cipher);
   } else {
     console.log("Invalid SK!!!");
   }
-  //   console.log(
-  //     JSON.parse(
-  //       `{"pass":[{"name":"kihs","pass":"fdjsf"},{"name":"kihs","pass":"fdjsf"}]}`
-  //     ).pass[0]
-  //   );
 };
 
 export const _decrypt = (cipher, sk) => {
@@ -37,7 +31,9 @@ export const _decrypt = (cipher, sk) => {
 };
 
 export const _decryptPass = async (sk) => {
+  let decipher = [];
   const cipher = await AsyncStorage.getItem("passwords");
-  const decipher = aes.decrypt(cipher, sk + pk).toString(enc.Utf8);
-  return JSON.parse(decipher).pass;
+  if (cipher)
+    decipher = JSON.parse(aes.decrypt(cipher, sk + pk).toString(enc.Utf8)).pass;
+  return decipher;
 };

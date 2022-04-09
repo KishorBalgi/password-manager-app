@@ -17,11 +17,17 @@ export default function MyPasswords({ route }) {
       {passwords ? (
         <View>
           <Text style={globalStyles.title}>My Passwords</Text>
-          <FlatList
-            data={passwords}
-            renderItem={({ item }) => <PassBox item={item} />}
-            keyExtractor={(item) => item.name}
-          />
+          {passwords.length !== 0 ? (
+            <FlatList
+              data={passwords}
+              renderItem={({ item }) => <PassBox item={item} />}
+              keyExtractor={(item) => item.name}
+            />
+          ) : (
+            <Text style={{ textAlign: "center", fontSize: 16 }}>
+              Nothing here yet!
+            </Text>
+          )}
         </View>
       ) : (
         <Loading />
