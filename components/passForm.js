@@ -1,17 +1,18 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
+import { StyleSheet, View, Text, TextInput } from "react-native";
 import CustomButton from "./customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
-
+import { _encrypt } from "../utils/store";
 export default function PassForm() {
   return (
-    <ScrollView style={{ ...globalStyles.container, ...styles.form }}>
+    <View style={{ ...globalStyles.container, ...styles.form }}>
       <Text style={globalStyles.title}>Add Password</Text>
       <Formik
         initialValues={{ name: "", pass: "" }}
         onSubmit={(values, actions) => {
-          console.log(values);
+          _encrypt(values);
+          // console.log(values);
           actions.resetForm();
         }}
       >
@@ -33,13 +34,14 @@ export default function PassForm() {
           </View>
         )}
       </Formik>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: 80,
+    justifyContent: "center",
+    paddingBottom: 70,
   },
   formInp: {
     marginVertical: 20,
