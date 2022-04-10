@@ -5,6 +5,7 @@ const globalStyles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  nestedCont: { flex: 1 },
   title: {
     fontSize: 22,
     fontWeight: "bold",

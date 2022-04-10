@@ -39,10 +39,23 @@ export const _decryptPass = async (sk) => {
   return decipher;
 };
 
-export const _updatePass = async (data, sk) => {
+export const _updatePass = async (data, sk, action = "update") => {
   let res = await AsyncStorage.getItem("passwords");
   res = _decrypt(res, sk);
-  JSON.parse(res).pass;
+  const arr = JSON.parse(res).pass;
+  let updatedPass;
+  if (action === "update") {
+    updatedPass = arr.map((i) => {
+      if (i.id === data.id) {
+        return data;
+      } else return i;
+    });
+  } else {
+    let i = arr.findIndex((i) => i.id === data);
+    arr.splice(i, 1);
+    updatedPass = arr;
+  }
+  const obj = { pass: updatedPass };
   const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
-  AsyncStorage.setItem("passwords", cipher);
+  await AsyncStorage.setItem("passwords", cipher);
 };

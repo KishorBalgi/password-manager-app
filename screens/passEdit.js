@@ -5,7 +5,11 @@ import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
 import { _updatePass } from "../utils/store";
 
-export default function PassEdit({ route }) {
+export default function PassEdit({ route, navigation }) {
+  function handleDelete() {
+    _updatePass(route.params.id, route.params.sk, "delete");
+    navigation.goBack();
+  }
   return (
     <View style={{ ...globalStyles.container, ...globalStyles.form }}>
       <Text style={globalStyles.title}>Update Password</Text>
@@ -17,6 +21,7 @@ export default function PassEdit({ route }) {
         }}
         onSubmit={(values, actions) => {
           _updatePass(values, route.params.sk);
+          navigation.goBack();
         }}
       >
         {(props) => (
@@ -34,7 +39,7 @@ export default function PassEdit({ route }) {
               value={props.values.pass}
             />
             <CustomButton title={"Update"} onPress={props.handleSubmit} />
-            <CustomButton title={"Delete"} onPress={props.handleSubmit} />
+            <CustomButton title={"Delete"} onPress={handleDelete} />
           </ScrollView>
         )}
       </Formik>
