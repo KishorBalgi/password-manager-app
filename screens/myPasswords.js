@@ -6,7 +6,7 @@ import Loading from "../components/loading";
 import PassBox from "../components/passbox";
 import { _decryptPass } from "../utils/store";
 
-export default function MyPasswords({ route }) {
+export default function MyPasswords({ route, navigation }) {
   const [passwords, setPasswords] = useState(null);
   useEffect(async () => {
     const pass = await _decryptPass(route.params.sk);
@@ -20,8 +20,13 @@ export default function MyPasswords({ route }) {
           {passwords.length !== 0 ? (
             <FlatList
               data={passwords}
-              renderItem={({ item }) => <PassBox item={item} />}
-              keyExtractor={(item) => item.name}
+              renderItem={({ item }) => (
+                <PassBox
+                  item={{ ...item, sk: route.params.sk }}
+                  navigation={navigation}
+                />
+              )}
+              keyExtractor={(item) => item.id}
             />
           ) : (
             <Text style={{ textAlign: "center", fontSize: 16 }}>

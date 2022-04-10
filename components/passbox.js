@@ -1,13 +1,16 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { globalColors } from "../styles/globalStyles";
 
-export default function PassBox({ item }) {
+export default function PassBox({ item, navigation }) {
   return (
-    <View style={styles.passBox}>
+    <TouchableOpacity
+      style={styles.passBox}
+      onPress={() => navigation.navigate("PasswordEdit", item)}
+    >
       <Text style={styles.title}>{item.name}</Text>
       <Text style={styles.pass}>{item.pass}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({

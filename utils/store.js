@@ -1,12 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import aes from "crypto-js/aes";
+import uuid from "react-native-uuid";
 import { enc } from "crypto-js/core";
 import pk from "./PK";
 import { _validateSK } from "./SK";
 
 export const _encrypt = async (data) => {
   const sk = data.sk;
-  data = { name: data.name, pass: data.pass };
+  data = { name: data.name, pass: data.pass, id: uuid.v1() };
   // AsyncStorage.setItem("passwords", "");
   if (await _validateSK(sk)) {
     let res = await AsyncStorage.getItem("passwords");
@@ -36,4 +37,12 @@ export const _decryptPass = async (sk) => {
   if (cipher)
     decipher = JSON.parse(aes.decrypt(cipher, sk + pk).toString(enc.Utf8)).pass;
   return decipher;
+};
+
+export const _updatePass = async (data, sk) => {
+  let res = await AsyncStorage.getItem("passwords");
+  res = _decrypt(res, sk);
+  JSON.parse(res).pass;
+  const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
+  AsyncStorage.setItem("passwords", cipher);
 };

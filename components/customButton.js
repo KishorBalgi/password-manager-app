@@ -13,6 +13,7 @@ export default function CustomButton({ title, onPress }) {
 const styles = StyleSheet.create({
   btn: {
     padding: 10,
+    marginVertical: 5,
     borderRadius: 6,
     backgroundColor: globalColors.clrPrimary,
   },
