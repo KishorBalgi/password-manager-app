@@ -1,11 +1,17 @@
 import * as React from "react";
 import { StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
+import NativeDevSettings from "react-native/Libraries/NativeModules/specs/NativeDevSettings";
 import CustomButton from "../components/customButton";
 import globalStyles from "../styles/globalStyles";
+import { _deleteAcc } from "../utils/store";
 
 export default function DelAcc({ navigation }) {
   function handleDeleteAcc() {
-    console.log("DELETE");
+    if (_deleteAcc()) {
+      NativeDevSettings.reload();
+    } else {
+      console.log("Something went wrong!!!");
+    }
   }
   return (
     <View style={{ ...globalStyles.container, ...globalStyles.form }}>

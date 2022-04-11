@@ -60,10 +60,10 @@ export const _updatePass = async (data, sk, action = "update") => {
   await AsyncStorage.setItem("passwords", cipher);
 };
 
-export const _deleteAcc = async (sk) => {
-  if (_validateSK(sk)) {
-    await AsyncStorage.removeItem("passwords");
-  }
+export const _deleteAcc = async () => {
+  await AsyncStorage.removeItem("passwords");
+  await AsyncStorage.removeItem("sk");
+  return true;
 };
 
 export const _updateSK = async (data) => {
