@@ -4,6 +4,7 @@ import uuid from "react-native-uuid";
 import { enc } from "crypto-js/core";
 import pk from "./PK";
 import { _validateSK } from "./SK";
+import { hashSK } from "./SK";
 
 export const _encrypt = async (data) => {
   const sk = data.sk;
@@ -67,8 +68,14 @@ export const _deleteAcc = async () => {
 };
 
 export const _updateSK = async (data) => {
-  if (_validateSK(data.oldSK)) {
+  if (await _validateSK(data.oldSK)) {
+    let res = await AsyncStorage.getItem("passwords");
+    res = _decrypt(res, data.oldSK);
+    await hashSK(data.newSK);
+    const cipher = aes.encrypt(res, data.newSK + pk).toString();
+    await AsyncStorage.setItem("passwords", cipher);
+    return true;
   } else {
-    console.log("Invalid SK!!!");
+    return false;
   }
 };

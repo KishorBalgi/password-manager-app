@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
 import CustomButton from "../components/customButton";
 import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
+import { _updateSK } from "../utils/store";
+import NativeDevSettings from "react-native/Libraries/NativeModules/specs/NativeDevSettings";
 
 export default function ChangeSK({ navigation }) {
   return (
@@ -10,9 +12,9 @@ export default function ChangeSK({ navigation }) {
       <Text style={globalStyles.title}>Update Secret Key</Text>
       <Formik
         initialValues={{ oldSK: "", newSK: "" }}
-        onSubmit={(values, actions) => {
-          console.log(values);
-          navigation.navigate("VerifyPassword");
+        onSubmit={async (values, actions) => {
+          if (await _updateSK(values)) NativeDevSettings.reload();
+          else console.log("Invalid SK!!!");
         }}
       >
         {(props) => (
