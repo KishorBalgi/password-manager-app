@@ -59,3 +59,16 @@ export const _updatePass = async (data, sk, action = "update") => {
   const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
   await AsyncStorage.setItem("passwords", cipher);
 };
+
+export const _deleteAcc = async (sk) => {
+  if (_validateSK(sk)) {
+    await AsyncStorage.removeItem("passwords");
+  }
+};
+
+export const _updateSK = async (data) => {
+  if (_validateSK(data.oldSK)) {
+  } else {
+    console.log("Invalid SK!!!");
+  }
+};

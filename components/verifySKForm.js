@@ -5,7 +5,7 @@ import globalStyles from "../styles/globalStyles";
 import { Formik } from "formik";
 import { _validateSK } from "../utils/SK";
 
-export default function VerifySKForm({ navigation }) {
+export default function VerifySKForm({ navigation, route }) {
   return (
     <View style={{ ...globalStyles.container, ...globalStyles.form }}>
       <Text style={globalStyles.title}>Verify your Secret Key</Text>
@@ -13,7 +13,7 @@ export default function VerifySKForm({ navigation }) {
         initialValues={{ sk: "" }}
         onSubmit={async (values, actions) => {
           if (await _validateSK(values.sk))
-            navigation.navigate("MyPasswords", values);
+            navigation.navigate(route.params.nav, values);
           else console.log("Invalid SK!!!");
           actions.resetForm();
         }}
