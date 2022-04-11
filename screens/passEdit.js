@@ -6,9 +6,9 @@ import { Formik } from "formik";
 import { _updatePass } from "../utils/store";
 
 export default function PassEdit({ route, navigation }) {
-  function handleDelete() {
-    _updatePass(route.params.id, route.params.sk, "delete");
-    navigation.goBack();
+  async function handleDelete() {
+    if (await _updatePass(route.params.id, route.params.sk, "delete"))
+      navigation.goBack();
   }
   return (
     <View style={{ ...globalStyles.container, ...globalStyles.form }}>
@@ -19,9 +19,8 @@ export default function PassEdit({ route, navigation }) {
           name: route.params.name,
           pass: route.params.pass,
         }}
-        onSubmit={(values, actions) => {
-          _updatePass(values, route.params.sk);
-          navigation.goBack();
+        onSubmit={async (values, actions) => {
+          if (await _updatePass(values, route.params.sk)) navigation.goBack();
         }}
       >
         {(props) => (

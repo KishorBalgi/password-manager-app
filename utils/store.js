@@ -21,7 +21,7 @@ export const _encrypt = async (data) => {
       pass: [data, ...pass],
     };
     const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
-    AsyncStorage.setItem("passwords", cipher);
+    await AsyncStorage.setItem("passwords", cipher);
   } else {
     console.log("Invalid SK!!!");
   }
@@ -59,6 +59,7 @@ export const _updatePass = async (data, sk, action = "update") => {
   const obj = { pass: updatedPass };
   const cipher = aes.encrypt(JSON.stringify(obj), sk + pk).toString();
   await AsyncStorage.setItem("passwords", cipher);
+  return true;
 };
 
 export const _deleteAcc = async () => {
