@@ -5,12 +5,15 @@ import globalStyles from "../styles/globalStyles";
 export default function About() {
   return (
     <View style={globalStyles.container}>
-      {/* <Text style={globalStyles.title}>About</Text> */}
+      <Text style={globalStyles.title}>About</Text>
       <Text style={globalStyles.txtBody}>
-        This is a simple app to securely store and manage your passwords. The
-        passwords are encrypted and stored in a file on your device. The
-        password are encrypted using a secret key which only you know, this
-        makes it hard to decipher the passwords without the secret key.
+        This is a simple app to securely store and manage your passwords. All
+        your passwords are encrypted using a secret key, the secret key is
+        hashed with a public key using the SHA256 alogithm. This make it
+        impossible to decrypt. All the passwords are encrypted with the secret
+        key and a public key, using the AES algorithm from crypto-js. The
+        passwords can be retrived only using the secret key. All the passwords
+        are stored on the device using AsyncStorage.
       </Text>
     </View>
   );

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     borderRadius: 6,
-    backgroundColor: globalColors.clrPrimary,
+    backgroundColor: globalColors.clrPrimaryOp,
     marginVertical: 5,
   },
   btnLabel: {

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   passBox: {
     padding: 10,
     borderRadius: 6,
-    backgroundColor: globalColors.clrPrimary,
+    backgroundColor: globalColors.clrPrimaryOp,
     margin: 10,
   },
   title: {

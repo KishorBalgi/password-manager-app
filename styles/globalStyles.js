@@ -30,9 +30,17 @@ const globalStyles = StyleSheet.create({
   formInp: {
     marginVertical: 20,
   },
+  note: {
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    color: "red",
+    paddingVertical: 5,
+  },
 });
 export default globalStyles;
 
 export const globalColors = {
   clrPrimary: "#29B6F6",
+  clrPrimaryOp: "rgba(41, 182, 246,0.8)",
 };
